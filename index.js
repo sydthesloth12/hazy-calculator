@@ -5,10 +5,10 @@ const getValues = (array) => {
   for (let i = 0; i < array.length; i++) {
     const currentItem = array[i]
 
-    if (isNaN(currentItem) === false) {
-      let currentItem = Number(currentItem)
+    if (isNaN(currentItem) === false && currentItem !== '') {
+      let value = Number(currentItem)
 
-      newArray.push(currentItem)
+      newArray.push(value)
     } if (currentItem === '+') {
       newArray.push(currentItem)
     } if (currentItem === '-') {
@@ -30,21 +30,27 @@ const getValues = (array) => {
 }
 
 
-const calculate = (newArray) => {
-  switch (newArray) {
-    case '+':
-      return newArray[0] + newArray[2]
-    case '-':
-      return newArray[0]  - newArray[2]
-    case '*':
-      return newArray[0]  * newArray[2]
-    case '/':
-      return newArray[0]  / newArray[2]
-    default:
-      return 'Invalid input'
+const calculate = (array) => {
+  const newArray = getValues(array)
+  
+  let firstNumber = newArray[0]
+  let secondNumber = newArray[2]
+  let operator = newArray[1]
+  console.log(operator)
+  if (operator === '+') {
+    answer = firstNumber + secondNumber
+  } else if (operator === '-') {
+    answer = firstNumber - secondNumber
+  } else if (operator === '/') {
+    answer = firstNumber / secondNumber
+  } else if (operator === '*') {
+    answer = firstNumber * secondNumber
+  } else {
+    answer = NaN
   }
+
+  return answer
 }
 
-
-
+module.exports = calculate
 
